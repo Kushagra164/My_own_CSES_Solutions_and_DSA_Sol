@@ -10,24 +10,33 @@ using namespace std;
 //Code By Kush
 
 /*
-Q) Given a set of points find a point and radius such that the circle made by  
+Q) Given a set of points find a centre point and radius such that the circle made 
+   through this would enclose all the given points and this circle should have minimum 
+   perimeter.
 */
 
 class Point{
-    int x,y;
-    Point(int i,int j){
-        this->x = i;
-        this->y = j;
-    }
+    public:
+        int x,y;
+        Point(int i,int j){
+            this->x = i;
+            this->y = j;
+        }
 };
 
 void solve() {
+
+    // n represents number of points
     int n;
     cin >> n;
-    vector<int> arr(n);
+
+    // Store given points
+    vector<Point> giv_points(n);
     rep(i,0,n) {
-        cin >> arr[i];
+        cin >> giv_points[i].x >> giv_points[i].y;
     }
+
+    
 }
 
 signed main() {
