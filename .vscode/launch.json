@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "c:/Users/kusha/My_own_CSES_Solutions_and_DSA_Sol/DSA_imp",
+      "program": "c:/Users/kusha/My_own_CSES_Solutions_and_DSA_Sol/DSA_imp/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
