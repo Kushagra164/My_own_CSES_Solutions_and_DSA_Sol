@@ -90,6 +90,15 @@ class OneCentre{
         }
 
         void findOneCentre(){
+            
+            // Base Cases
+
+            if (no_points == 1){
+                Centre = giv_points[0];
+                Radius = 0.0;
+                return ;
+            }
+
             // Algorithm 1 to find 1 Centre
             // Choose two points out of lenC2 possibilities and 
             // Check whether their midpoint is 1 centre or not.
@@ -111,6 +120,7 @@ class OneCentre{
                 }
             }
 
+            if (no_points == 2) return ;
             // Algorithm 2 to find 1 Centre
             // Choose three points out lenC3 possibilities and
             // Check whether their circumcentre is 1 centre or not
@@ -137,6 +147,11 @@ void solve() {
     // n represents number of points
     int n;
     cin >> n;
+
+    if (n <=0) {
+        cout << "Please enter atleast one point\n";
+        return ;
+    }
 
     // Store given points
     vector<Point> giv_points(n);
