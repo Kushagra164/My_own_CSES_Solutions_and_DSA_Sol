@@ -110,6 +110,7 @@ void solve() {
 signed main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    solve();
+    int test;
+    while(test--) solve();
     return 0;
 }
