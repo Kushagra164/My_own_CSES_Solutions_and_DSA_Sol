@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/kusha/My_own_CSES_Solutions_and_DSA_Sol/DSA_imp/LinkedList",
-      "program": "c:/Users/kusha/My_own_CSES_Solutions_and_DSA_Sol/DSA_imp/LinkedList/build/Debug/outDebug",
+      "cwd": "c:/Users/kusha/My_own_CSES_Solutions_and_DSA_Sol/Graphs",
+      "program": "c:/Users/kusha/My_own_CSES_Solutions_and_DSA_Sol/Graphs/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
