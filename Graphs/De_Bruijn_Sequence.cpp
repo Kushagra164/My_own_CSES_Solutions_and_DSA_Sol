@@ -9,7 +9,10 @@ using namespace std;
 
 //Code By Kush
 
-int BinaryToInt(string s,int n){
+// Input: n,k
+// Output: string containing the sequence
+
+int ConvertToInt(string s,int n,int k){
     string temp = "";
     int n1=s.size();
     for (int i=n1-n;i<n1;i++){
@@ -17,9 +20,7 @@ int BinaryToInt(string s,int n){
     }
     int num = 0;
     for (int i=0;i<n;i++){
-        if (temp[i] == '1'){
-            num += (1<<(n-1-i));
-        }
+        num += (temp[i]-'0')*(pow(k,n-1-i));
     }
     return num;
 }
@@ -28,32 +29,32 @@ void solve() {
     int n,k,m;
     cin >> n >> k;
     m = pow(k,n);
-    // Algo 1
+
+    // Algo 
     // Start with 0 then try to increase the sequence
+    // by adding the largest possible number to the sequence
+    // if num is already visited then add lesser and so on to get the sequence
+
+    // Worst Case Complexity is O(n*pow(k,n+1)) 
+
     vector<bool> vis(m,0);
     string ans = "";
     for (int i=0;i<n;i++){
         ans.pb('0');
     }
     vis[0]=1;
-    // for (int i=0;i<m-1;i++){
-    //     int num1 = BinaryToInt(ans+"1",n);
-    //     int num0 = BinaryToInt(ans+"0",n);
-    //     if (!vis[num1]){
-    //         ans.pb('1');
-    //         vis[num1]=1;
-    //     }
-    //     else{
-    //         if (vis[num0]) break;
-    //         ans.pb('0');
-    //         vis[num0]=1;
-    //     }
-    // }
-    while(true){
-        
+    for (int i=0;i<m-1;i++){
+        for (int j=k-1;j>=0;j--){
+            int num = ConvertToInt(ans+to_string(j),n,k);
+            if (!vis[num]){
+                ans = ans + to_string(j);
+                vis[num]=1;
+                break;
+            }
+        }
     }
     cout << ans;
-
+    
     return ;
 }
 
