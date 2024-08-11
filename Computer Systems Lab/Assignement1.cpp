@@ -6,8 +6,8 @@ using namespace std;
 
 // Input : words.txt
 // Options :
-// • ‘i’ – InsertIntoTrie (root, “word”)
-// • ‘f’ – SearchInTrie(root, “word”)
+// • ‘i’ – InsertIntoTrie (“word”)
+// • ‘f’ – SearchInTrie(“word”)
 // • ‘s’ - Sort
 // • ‘q’ – Quit
 
@@ -30,7 +30,6 @@ public:
         int n = word.size();
         TrieNode* curr = root;
         for (int i=0;i<n;i++){
-            // cout << word[i] << "\n";
             if (curr->child == NULL){
                 TrieNode* temp = new TrieNode();
                 temp->ch = word[i];
@@ -117,20 +116,8 @@ public:
 int main() {
     
     Trie tr;
-    // vector<string> test  = {"A","DOG","ANT","CAT","ANALYTIC","AN","ANALOGY","CATALYST","DOGMATIC","DOT","DOLL"};
-    // for (string s: test) {
-    //     tr.insertIntoTrie(s);
-    // }
-    // cout << tr.searchInTrie("DOG") << "\n";
-    // cout << tr.searchInTrie("CATALYST") << "\n";
-    // cout << tr.searchInTrie("ANTY") << "\n";
-    
-    // cout << "Sorted Order is: \n";
-    // vector<string> sortedOrder;
-    // tr.SortTrie(sortedOrder);
-    // for (auto s:sortedOrder) cout << s << "\n";
 
-    ifstream file("words.txt");
+    ifstream file("../words.txt");
     if (!file) {
         cerr << "Error opening file" << endl;
         return 1;
@@ -142,7 +129,6 @@ int main() {
     }
     file.close();
 
-    // Step 2: Loop for user options
     char option;
     do {
         cout << "Choose an option:\n"
@@ -169,6 +155,7 @@ int main() {
             cout << "Words in sorted order:\n";
             vector<string> sortedOrder; 
             tr.SortTrie(sortedOrder);
+            for (string s: sortedOrder) cout << s << "\n";
         } else if (option != 'q') {
             cout << "Invalid option. Please try again." << endl;
         }
