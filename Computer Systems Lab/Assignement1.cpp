@@ -1,7 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 
+// Name: Kushagra Khare
+// Roll No. : 20CS02004
+
+// Input : words.txt
+// Options :
+// • ‘i’ – InsertIntoTrie (root, “word”)
+// • ‘f’ – SearchInTrie(root, “word”)
+// • ‘s’ - Sort
+// • ‘q’ – Quit
+
 
 class TrieNode{
 public:
@@ -14,13 +23,10 @@ public:
 class Trie{
     TrieNode* root;
 public:
-    set<string> st;
-    
     Trie(){
         root = new TrieNode();
     }
     void insertIntoTrie(string word){
-        st.insert(word);
         int n = word.size();
         TrieNode* curr = root;
         for (int i=0;i<n;i++){
@@ -87,22 +93,89 @@ public:
         if (curr->isWord) return true;
         return false;
     }
+
+    void SortTrie(vector<string> &sortedOrder){
+        string s = "";
+        applyDFS(s,root->child,sortedOrder);
+    }
+
+    void applyDFS(string &s,TrieNode* curr,vector<string> &sortedOrder){
+        if (curr == NULL) return ;
+        s.push_back(curr->ch);
+        if (curr->isWord) sortedOrder.push_back(s);
+        // First Traverse child
+        applyDFS(s,curr->child,sortedOrder);
+        // Travel sibling
+        s.pop_back();
+        applyDFS(s,curr->sibling,sortedOrder);
+
+        return ;
+    }
     
 };
 
 int main() {
     
     Trie tr;
-    vector<string> test  = {"A","DOG","ANT","CAT","ANALYTIC","AN","ANALOGY","CATALYST","DOGMATIC","DOT","DOLL"};
-    for (string s: test) {
-        tr.insertIntoTrie(s);
+    // vector<string> test  = {"A","DOG","ANT","CAT","ANALYTIC","AN","ANALOGY","CATALYST","DOGMATIC","DOT","DOLL"};
+    // for (string s: test) {
+    //     tr.insertIntoTrie(s);
+    // }
+    // cout << tr.searchInTrie("DOG") << "\n";
+    // cout << tr.searchInTrie("CATALYST") << "\n";
+    // cout << tr.searchInTrie("ANTY") << "\n";
+    
+    // cout << "Sorted Order is: \n";
+    // vector<string> sortedOrder;
+    // tr.SortTrie(sortedOrder);
+    // for (auto s:sortedOrder) cout << s << "\n";
+
+    ifstream file("words.txt");
+    if (!file) {
+        cerr << "Error opening file" << endl;
+        return 1;
     }
-    cout << tr.searchInTrie("DOG") << "\n";
-    cout << tr.searchInTrie("CATALYST") << "\n";
-    cout << tr.searchInTrie("ANTY") << "\n";
-    
-    cout << "Sorted Order is: \n";
-    for (auto s:tr.st) cout << s << "\n";
-    
+
+    string word;
+    while (file >> word) {
+        tr.insertIntoTrie(word);
+    }
+    file.close();
+
+    // Step 2: Loop for user options
+    char option;
+    do {
+        cout << "Choose an option:\n"
+                  << "'i' - InsertIntoTrie\n"
+                  << "'f' - SearchInTrie\n"
+                  << "'s' - Sort\n"
+                  << "'q' - Quit\n";
+        cin >> option;
+
+        if (option == 'i') {
+            cout << "Enter word to insert: ";
+            cin >> word;
+            tr.insertIntoTrie(word);
+            cout << word << " inserted into trie." << endl;
+        } else if (option == 'f') {
+            cout << "Enter word to search: ";
+            cin >> word;
+            if (tr.searchInTrie(word)) {
+                cout << word << " found in trie." << endl;
+            } else {
+                cout << word << " not found in trie." << endl;
+            }
+        } else if (option == 's') {
+            cout << "Words in sorted order:\n";
+            vector<string> sortedOrder; 
+            tr.SortTrie(sortedOrder);
+        } else if (option != 'q') {
+            cout << "Invalid option. Please try again." << endl;
+        }
+    } while (option != 'q');
+
+    cout << "Program exited." << endl;
+
     return 0;
+
 }
