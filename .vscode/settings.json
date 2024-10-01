@@ -60,6 +60,7 @@
     "iostream": "cpp",
     "regex": "cpp",
     "string": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "random": "cpp"
   }
 }
